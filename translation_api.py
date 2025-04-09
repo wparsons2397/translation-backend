@@ -45,7 +45,6 @@ def translate_many(locale):
 
         text_obj = data.get("text_obj")
 
-        # Ensure at least one text field is provided
         if not any(text_obj.values()):
             #log "Missing Text Fields Error" for enterprise system
             return jsonify({"error": "Missing text fields"}), 400
