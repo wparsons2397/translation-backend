@@ -1,5 +1,7 @@
 ## This is the Python Backend for my personal portfolio website to handle dynamic content translations
 
+Python version used: 3.13.2
+
 ## Running Instructions:
 1. Navigate to proper directory
 2. Run the api
