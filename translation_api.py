@@ -51,6 +51,8 @@ def translate_many(locale):
 
         texts = [text for text in text_obj.values() if text is not None]
 
+        ##### Return to this for part 2, Designing the Implementation
+
         return_text = asynchio.run(get_translations(texts, locale))
         if any(isinstance(item, dict) and "error" in item for item in return_text):
             #log "Translation Failed Error" for enterprise system
@@ -76,6 +78,8 @@ def translate_one(locale):
         if len(text_obj) > MAX_TEXT_LENGTH:
             #Log "Maximum Characters Exceeded Error" exceeded for enterprise system 
             return jsonify({"error": "Text length exceeds limit."}), 413
+        
+        ##### Return to this for part 2, Designing the Implementation
 
         return_text = asynchio.run(get_translation(text_obj, locale))
         if isinstance(return_text, dict) and "error" in return_text:
@@ -88,34 +92,5 @@ def translate_one(locale):
         return jsonify({"error": f"Unexpected error: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    # solely for dev environment
+    # solely for dev environment, not for an enterprise system
     app.run(debug=True)
-
-
-##COMMENTS AND SCRATCH WORK
-
-### cmds
-# gcloud auth list
-# gcloud services enable translate.googleapis.com
-# proj id: sharp-leaf-455813-s9
-
-
-#Google Translate API
-# PROJECT_ID = "sharp-leaf-455813-s9"
-# assert PROJECT_ID
-# PARENT = f"projects/{PROJECT_ID}/locations/global"
-
-# def print_supported_languages(display_language_code: str):
-#     client = translate.TranslationServiceClient()
-
-#     response = client.get_supported_languages(
-#         parent=PARENT,
-#         display_language_code=display_language_code,
-#     )
-
-#     languages = response.languages
-#     print(f" Languages: {len(languages)} ".center(60, "-"))
-#     for language in languages:
-#         language_code = language.language_code
-#         display_name = language.display_name
-#         print(f"{language_code:10}{display_name}")
